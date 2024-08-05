@@ -32,8 +32,10 @@ namespace SimpleGuideTutorial.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertTopic([FromBody] CreateTopicDto createTopicDto)
+        public async Task<IActionResult> InsertTopic([FromBody] CreateTopicDTO createTopicDto)
         {
+            if(_ITopic.Existing(createTopicDto))
+                return BadRequest(new { message = "Topic already exists" });
             var success = await _ITopic.InsertTopic(createTopicDto);
             if (success)
                 return Ok(new { message = "Topic inserted Successfully" });
@@ -41,7 +43,7 @@ namespace SimpleGuideTutorial.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTopic(int id, [FromBody] UpdateTopicDto updateTopicDto) 
+        public async Task<IActionResult> UpdateTopic(int id, [FromBody] UpdateTopicDTO updateTopicDto) 
         {
             var success = await _ITopic.UpdateTopic(id, updateTopicDto);
             if (success)

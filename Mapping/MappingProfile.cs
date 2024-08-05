@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SimpleGuideTutorial.DTO.Category;
 using SimpleGuideTutorial.DTO.Topic;
 using SimpleGuideTutorial.Model;
 
@@ -11,11 +12,19 @@ namespace SimpleGuideTutorial.Mapping
             #region Topic
 
             CreateMap<Topic, TopicDTO>();
-            CreateMap<CreateTopicDto, Topic>();
-            CreateMap<UpdateTopicDto, Topic>();
-            
-            #endregion
-            
+            CreateMap<CreateTopicDTO, Topic>();
+            CreateMap<UpdateTopicDTO, Topic>();
+
+            #endregion Topic END
+
+            #region Category
+
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<CreateCategoryDTO, Category>();
+            CreateMap<UpdateCategoryDTO, Category>();
+
+            #endregion Category END
+
         }
     }
 }

@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<ITopic, TopicService>();
+builder.Services.AddScoped<ICategory, CategoryService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
