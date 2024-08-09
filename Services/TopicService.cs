@@ -16,16 +16,30 @@ namespace SimpleGuideTutorial.Services
             _dbcontext = dbcontext;
             _mapper = mapper;
         }
-        public async Task<ICollection<TopicDTO>> SelectAllTopics()
+
+        //public async Task<ICollection<Topic>> SelectAllTopics()
+        //{
+        //    var topics = await _dbcontext.Topics.ToListAsync();
+        //    return _mapper.Map<ICollection<TopicDTO>>(topics);
+        //}
+        //public async Task<ICollection<TopicDTO>> SelectAllTopicsByRemovedFalse()
+        //{
+        //    var topics = await _dbcontext.Topics.Where(x => x.Removed == false).ToListAsync();
+        //    return _mapper.Map<ICollection<TopicDTO>>(topics);
+        //}
+
+
+
+        public async Task<List<TopicDTO>> SelectAllTopics()
         {
             var topics = await _dbcontext.Topics.ToListAsync();
-            return _mapper.Map<ICollection<TopicDTO>>(topics);
+            return _mapper.Map<List<TopicDTO>>(topics);
         }
 
-        public async Task<ICollection<TopicDTO>> SelectAllTopicsByRemovedFalse()
+        public async Task<List<TopicDTO>> SelectAllTopicsByRemovedFalse()
         {
             var topics = await _dbcontext.Topics.Where(x => x.Removed == false).ToListAsync();
-            return _mapper.Map<ICollection<TopicDTO>>(topics);
+            return _mapper.Map<List<TopicDTO>>(topics);
         }
 
         public async Task<bool> InsertTopic(CreateTopicDTO createTopicDto)

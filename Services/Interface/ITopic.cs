@@ -5,8 +5,10 @@ namespace SimpleGuideTutorial.Services.Interface
 {
     public interface ITopic
     {
-        Task<ICollection<TopicDTO>> SelectAllTopics();
-        Task<ICollection<TopicDTO>> SelectAllTopicsByRemovedFalse();
+        //Task<ICollection<Topic>> SelectAllTopics();
+        //Task<ICollection<TopicDTO>> SelectAllTopicsByRemovedFalse();
+        Task<List<TopicDTO>> SelectAllTopics();
+        Task<List<TopicDTO>> SelectAllTopicsByRemovedFalse();
         Task<bool> InsertTopic(CreateTopicDTO createTopicDto);
         Task<bool> UpdateTopic(int topicId,UpdateTopicDTO updateTopicDto);
         Task<bool> DeleteTopic(int topicId);

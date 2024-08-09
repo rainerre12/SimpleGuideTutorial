@@ -4,8 +4,11 @@ namespace SimpleGuideTutorial.Services.Interface
 {
     public interface ICategory
     {
-        Task<ICollection<CategoryDTO>> SelectAllCategories(int topicId);
-        Task<ICollection<CategoryDTO>> SelectAllCategoriesByRemovedFalse(int topicId);
+        //Task<ICollection<CategoryDTO>> SelectAllCategories(int topicId);
+        //Task<ICollection<CategoryDTO>> SelectAllCategoriesByRemovedFalse(int topicId);
+
+        Task<List<CategoryDTO>> SelectAllCategories(int topicId);
+        Task<List<CategoryDTO>> SelectAllCategoriesByRemovedFalse(int topicId);
 
         Task<bool> InsertCategory(CreateCategoryDTO createCategoryDTO);
         Task<bool> UpdateCategory(int categoryId,UpdateCategoryDTO updateCategoryDTO);
