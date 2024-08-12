@@ -17,28 +17,11 @@ namespace SimpleGuideTutorial.Services
             _mapper = mapper;
         }
 
-        //public async Task<ICollection<Topic>> SelectAllTopics()
-        //{
-        //    var topics = await _dbcontext.Topics.ToListAsync();
-        //    return _mapper.Map<ICollection<TopicDTO>>(topics);
-        //}
-        //public async Task<ICollection<TopicDTO>> SelectAllTopicsByRemovedFalse()
-        //{
-        //    var topics = await _dbcontext.Topics.Where(x => x.Removed == false).ToListAsync();
-        //    return _mapper.Map<ICollection<TopicDTO>>(topics);
-        //}
-
-
-
-        public async Task<List<TopicDTO>> SelectAllTopics()
+        public async Task<List<TopicDTO>> SelectAllTopics(bool filterRemovedStatus)
         {
             var topics = await _dbcontext.Topics.ToListAsync();
-            return _mapper.Map<List<TopicDTO>>(topics);
-        }
-
-        public async Task<List<TopicDTO>> SelectAllTopicsByRemovedFalse()
-        {
-            var topics = await _dbcontext.Topics.Where(x => x.Removed == false).ToListAsync();
+            if (filterRemovedStatus)
+                topics = topics.Where(x => x.Removed == filterRemovedStatus).ToList();
             return _mapper.Map<List<TopicDTO>>(topics);
         }
 

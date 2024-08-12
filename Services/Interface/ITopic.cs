@@ -7,8 +7,8 @@ namespace SimpleGuideTutorial.Services.Interface
     {
         //Task<ICollection<Topic>> SelectAllTopics();
         //Task<ICollection<TopicDTO>> SelectAllTopicsByRemovedFalse();
-        Task<List<TopicDTO>> SelectAllTopics();
-        Task<List<TopicDTO>> SelectAllTopicsByRemovedFalse();
+        Task<List<TopicDTO>> SelectAllTopics(bool filterRemovedStatus);
+        //Task<List<TopicDTO>> SelectAllTopicsByRemovedFalse();
         Task<bool> InsertTopic(CreateTopicDTO createTopicDto);
         Task<bool> UpdateTopic(int topicId,UpdateTopicDTO updateTopicDto);
         Task<bool> DeleteTopic(int topicId);

@@ -18,16 +18,9 @@ namespace SimpleGuideTutorial.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTopics()
+        public async Task<IActionResult> GetAllTopics([FromQuery] bool filterRemoveStatus = false)
         {
-            var topics = await _ITopic.SelectAllTopics(); 
-            return Ok(topics);
-        }
-
-        [HttpGet("active")]
-        public async Task<IActionResult> GetAllTopicsByRemovedFalse() 
-        {
-            var topics = await _ITopic.SelectAllTopicsByRemovedFalse();
+            var topics = await _ITopic.SelectAllTopics(filterRemoveStatus);
             return Ok(topics);
         }
 

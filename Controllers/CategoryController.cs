@@ -15,17 +15,17 @@ namespace SimpleGuideTutorial.Controllers
             this._ICategory = categoryService;
         }
 
-        [HttpGet("{categoryId}")]
-        public async Task<IActionResult> GetAllCategory(int categoryId)
+        [HttpGet("{filterRemoveStatus}")]
+        public async Task<IActionResult> GetAllCategory(bool filterRemoveStatus = false)
         {
-            var category = await _ICategory.SelectAllCategories(categoryId);
+            var category = await _ICategory.SelectAllCategories(filterRemoveStatus);
             return Ok(category);
         }
 
-        [HttpGet("active{categoryId}")]
-        public async Task<IActionResult> GetAllCategoryByRemovedFalse(int categoryId)
+        [HttpGet("active{categoryId,filterRemoveStatus}")]
+        public async Task<IActionResult> GetAllCategoryByRemovedFalse(int categoryId,bool filterRemoveStatus = false)
         {
-            var category = await _ICategory.SelectAllCategoriesByRemovedFalse(categoryId);
+            var category = await _ICategory.SelectAllCategoriesById(categoryId,filterRemoveStatus);
             return Ok(category);
         }
 

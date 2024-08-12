@@ -17,27 +17,19 @@ namespace SimpleGuideTutorial.Services
             _mapper = mapper;
         }
 
-        //public async Task<ICollection<CategoryDTO>> SelectAllCategories(int topicId)
-        //{
-        //    var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId).ToListAsync();
-        //    return _mapper.Map<ICollection<CategoryDTO>>(categories);
-        //}
-
-        //public async Task<ICollection<CategoryDTO>> SelectAllCategoriesByRemovedFalse(int topicId)
-        //{
-        //    var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId && x.Removed == false).ToListAsync();
-        //    return _mapper.Map<ICollection<CategoryDTO>>(categories);
-        //}
-
-        public async Task<List<CategoryDTO>> SelectAllCategories(int topicId)
+        public async Task<List<CategoryDTO>> SelectAllCategories(bool filterRemovedStatus)
         {
-            var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId).ToListAsync();
+            var categories = await _dbcontext.Categories.ToListAsync();
+            if (filterRemovedStatus)
+                categories = categories.Where(x => x.Removed == filterRemovedStatus).ToList();
             return _mapper.Map<List<CategoryDTO>>(categories);
         }
 
-        public async Task<List<CategoryDTO>> SelectAllCategoriesByRemovedFalse(int topicId)
+        public async Task<List<CategoryDTO>> SelectAllCategoriesById(int topicId,bool filterRemovedStatus)
         {
-            var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId && x.Removed == false).ToListAsync();
+            var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId).ToListAsync();
+            if (filterRemovedStatus)
+                categories = categories.Where(x => x.Removed == filterRemovedStatus).ToList();
             return _mapper.Map<List<CategoryDTO>>(categories);
         }
 
