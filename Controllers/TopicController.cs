@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SimpleGuideTutorial.DTO.Topic;
-using SimpleGuideTutorial.Model;
-using SimpleGuideTutorial.Services;
 using SimpleGuideTutorial.Services.Interface;
 
 namespace SimpleGuideTutorial.Controllers

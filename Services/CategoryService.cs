@@ -16,21 +16,44 @@ namespace SimpleGuideTutorial.Services
             _dbcontext = dbContext;
             _mapper = mapper;
         }
-
-        public async Task<List<CategoryDTO>> SelectAllCategories(bool filterRemovedStatus)
+        public async Task<List<CategoryListDTO>> SelectAllCategories(bool filterRemovedStatus)
         {
-            var categories = await _dbcontext.Categories.ToListAsync();
+            //var categories = await _dbcontext.Categories.ToListAsync();
+            var categories = await (from c in _dbcontext.Categories
+                                    join t in _dbcontext.Topics on c.TopicId equals t.Id
+                                    select new CategoryListDTO
+                                    {
+                                        Id = c.Id,
+                                        Name = c.Name,
+                                        TopicName = t.Name,
+                                        TopicId = c.TopicId,
+                                        Removed = c.Removed
+                                    }).ToListAsync();
+
+
             if (filterRemovedStatus)
                 categories = categories.Where(x => x.Removed == filterRemovedStatus).ToList();
-            return _mapper.Map<List<CategoryDTO>>(categories);
+            return _mapper.Map<List<CategoryListDTO>>(categories);
         }
 
-        public async Task<List<CategoryDTO>> SelectAllCategoriesById(int topicId,bool filterRemovedStatus)
+        public async Task<List<CategoryListDTO>> SelectAllCategoriesById(int topicId,bool filterRemovedStatus)
         {
-            var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId).ToListAsync();
+            //var categories = await _dbcontext.Categories.Where(x => x.TopicId == topicId).ToListAsync();
+            var categories = await (from c in _dbcontext.Categories
+                                    join t in _dbcontext.Topics on c.TopicId equals t.Id
+                                    where c.TopicId == topicId
+                                    select new CategoryListDTO
+                                    {
+                                        Id = c.Id,
+                                        Name = c.Name,
+                                        TopicName = t.Name,
+                                        TopicId = c.TopicId,
+                                        Removed = c.Removed
+                                    }).ToListAsync();
+
             if (filterRemovedStatus)
                 categories = categories.Where(x => x.Removed == filterRemovedStatus).ToList();
-            return _mapper.Map<List<CategoryDTO>>(categories);
+            return _mapper.Map<List<CategoryListDTO>>(categories);
         }
 
         public async Task<bool> InsertCategory(CreateCategoryDTO createCategoryDTO)

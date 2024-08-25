@@ -15,8 +15,8 @@ namespace SimpleGuideTutorial.Controllers
             this._ICategory = categoryService;
         }
 
-        [HttpGet("{filterRemoveStatus}")]
-        public async Task<IActionResult> GetAllCategory(bool filterRemoveStatus = false)
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategory([FromQuery] bool filterRemoveStatus = false)
         {
             var category = await _ICategory.SelectAllCategories(filterRemoveStatus);
             return Ok(category);

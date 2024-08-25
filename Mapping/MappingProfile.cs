@@ -22,6 +22,7 @@ namespace SimpleGuideTutorial.Mapping
             CreateMap<Category, CategoryDTO>();
             CreateMap<CreateCategoryDTO, Category>();
             CreateMap<UpdateCategoryDTO, Category>();
+            CreateMap<CategoryListDTO, Category>();
 
             #endregion Category END
 
