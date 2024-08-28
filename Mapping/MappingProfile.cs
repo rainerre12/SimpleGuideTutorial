@@ -31,7 +31,7 @@ namespace SimpleGuideTutorial.Mapping
 
             CreateMap<Description, DescriptionDTO>();
             CreateMap<CreateDescriptionDTO, Description>();
-            CreateMap<UpdateCategoryDTO, Description>();
+            CreateMap<UpdateDescriptionDTO, Description>();
             CreateMap<DescriptionListDto, Description>();
 
             #endregion

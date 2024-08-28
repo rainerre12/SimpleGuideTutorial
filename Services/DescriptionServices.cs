@@ -59,7 +59,14 @@ namespace SimpleGuideTutorial.Services
             var existingDescription = await _dbcontext.Descriptions.FindAsync(DescriptionId);
             if (existingDescription == null)
                 return false;
-            _mapper.Map(updateDescriptionDTO, existingDescription);
+            //_mapper.Map(updateDescriptionDTO, existingDescription);
+
+            existingDescription.DescriptionText = updateDescriptionDTO.DescriptionText;
+            existingDescription.CategoryId = updateDescriptionDTO.CategoryId;
+            existingDescription.ImageId = updateDescriptionDTO.ImageId > 0 ? updateDescriptionDTO.ImageId : null;
+            existingDescription.VideoId = updateDescriptionDTO.VideoId > 0 ? updateDescriptionDTO.VideoId : null;
+            existingDescription.Removed = updateDescriptionDTO.isRemoved;
+
             _dbcontext.Descriptions.Update(existingDescription);
             var result = await _dbcontext.SaveChangesAsync();
             return result > 0;
