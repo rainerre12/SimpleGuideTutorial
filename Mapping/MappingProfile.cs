@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SimpleGuideTutorial.DTO.Category;
+using SimpleGuideTutorial.DTO.Description;
 using SimpleGuideTutorial.DTO.Topic;
 using SimpleGuideTutorial.Model;
 
@@ -26,6 +27,14 @@ namespace SimpleGuideTutorial.Mapping
 
             #endregion Category END
 
+            #region Description
+
+            CreateMap<Description, DescriptionDTO>();
+            CreateMap<CreateDescriptionDTO, Description>();
+            CreateMap<UpdateCategoryDTO, Description>();
+            CreateMap<DescriptionListDto, Description>();
+
+            #endregion
         }
     }
 }

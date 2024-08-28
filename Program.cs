@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<ITopic, TopicService>();
 builder.Services.AddScoped<ICategory, CategoryService>();
+builder.Services.AddScoped<IDescriptions, DescriptionServices>();
 
 // Configure CORS
 builder.Services.AddCors(options =>
